@@ -1,3 +1,152 @@
+/*
+  lexical environment = local memory + lexical environment of its parent
+  scope chain = chain of lexical environemnts and parent references
+
+  temporal dead zone = time period between hoisting to initialization of a let/const 
+  let/const are not attached to the global object. (window in case of browser)
+
+  Syntax error:
+  => missing initializer in const declaration
+  => identifier 'a' has already been declared
+
+  Block, Script, Global
+
+  lexical scope chain works the same for functions and blocks:
+  => The lexical scope chain works the same for functions and blocks in JavaScript because both create lexical environments
+     that reference their outer environment; the only difference is that blocks create scope only for let and const, not for var.
+
+ 👉 Assignment is right-to-left
+ 👉 Assignment returns a value
+ 👉 You can chain assignments
+ 👉 Missing var/let/const can create globals (non-strict mode)
+
+Top-level function → fully hoisted
+Function inside block → behaves like let
+→ scoped to block
+→ not safely hoisted outside
+
+if (true) let a = 1; // SyntaxError: Lexical declaration cannot appear in a single-statement context
+
+{
+  typeof i; // ReferenceError: Cannot access 'i' before initialization
+  let i = 10;
+}
+
+⭐ 1) switch does NOT create per-case scope
+⭐ 2) let/const are block-scoped
+⭐ 3) Multiple let in same switch → ❌ SyntaxError
+⭐ 4) Fix with {} blocks
+
+let x = 1;
+
+switch (x) {
+  case 0:
+    let foo;
+    break;
+  case 1:
+    let foo; // SyntaxError: Identifier 'foo' has already been declared
+    break;
+}
+*/
+
+// {
+//     // TDZ starts at beginning of scope
+//     const func = () => console.log(letVar); // OK
+//     func();
+  
+//     // Within the TDZ letVar access throws `ReferenceError`
+  
+//     let letVar = 3; // End of TDZ (for letVar)
+//     // func(); // Called outside TDZ!
+// }
+
+/* question */
+// var a = 1;
+// function a() {
+//     console.log("lemon");
+// }
+// console.log(a); // 1
+// a(); // TypeError: a is not a function
+
+/* question */
+console.log(a); // function 
+var a = 1;
+function a() {}
+
+/* question */
+function test(y) {
+    console.log(y);
+    function y() {}
+}
+test(5);
+
+// var a, b;
+// console.log(a, b);
+
+// var a, b = a = "A";
+// console.log(a, b);
+
+
+// let a = 1;
+
+// function test() {
+//   let a = 2;
+
+//   if (true) {
+//     let a = 3;
+//     console.log(a);
+//   }
+
+//   console.log(a);
+// }
+
+// test();
+// console.log(a); // output: 3 2 1
+
+/* question: The scope chain depends on where a function is defined, not where it is called. */ 
+// let x = 10;
+
+// function foo() {
+//   console.log(x);
+// }
+
+// function bar() {
+//   let x = 20;
+//   foo();
+// }
+
+// bar(); // output: 10
+
+for(var i=1; i<=5; i++) {
+
+    (function func(x) {
+        setTimeout(() => {
+            console.log(x);
+        }, x*1000);
+    })(i);
+   
+}
+
+// for(var i=1; i<=5; i++) {
+//     setTimeout(() => {
+//         console.log(i);
+//     }, i*1000);
+// }
+
+/* When a function is called, its parameters are new variables initialized with the argument values at that moment.
+
+   But they do not track later changes to the argument variable. */
+
+let val = function greet(name) {
+    console.log("hello " + name);
+}
+
+val("poppy");
+
+let newVal = val;
+val = null;
+newVal("choco");
+
 // function test(a) {
 //   console.log(a);
 //   function a() {}
@@ -397,8 +546,26 @@ console.log(summ);
 // [].reduce((acc, curr) => acc + curr);
 
   
-const a = [1, 2, 3].reduce((acc, curr) => {
-    acc + curr; // ❌ no return
-  }, 0);
+// const a = [1, 2, 3].reduce((acc, curr) => {
+//     acc + curr; // ❌ no return
+//   }, 0);
   
-console.log(a);
+// console.log(a);
+
+
+/* more experiments */
+
+// function getVal() {
+//     console.log(x); // undefined
+// }
+
+// getVal();
+// var x = 4;
+// console.log(x); // 4
+
+function getVal() {
+    console.log("hi"); // undefined
+}
+
+getVal();
+// console.log(x); // 4
