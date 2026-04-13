@@ -58,6 +58,23 @@ REASON: Binary can represent all integers.
           That’s about 9 × 10¹⁵ (16 digits).
        => After that, the spacing between representable numbers increases
 
+* When JavaScript converts the number to a string for printing, it prints the shortest decimal that maps back to the same floating-point value.
+* OR JavaScript finds the shortest decimal string that, when converted back to binary, gives the same stored binary value.
+* Sometimes, the floating-point errors cancel out or round nicely, so the printed result looks correct.
+  e.g => 0.2 + 0.3 == 0.5 // errors cancel
+         0.1 + 0.3 == 0.4 // round nicely
+
+* “Ties to even” rule
+
+When a number is exactly halfway between two representable numbers:
+➡️ Pick the one whose last binary digit is EVEN
+
+* JavaScript prints 0.1 for 0.10000000000000000555 because both literals round to the same IEEE-754 value,
+  but 0.10000001 is far enough to round to a different representable number.
+
+* JavaScript does not print the number you type; it prints the shortest decimal representation of the internally stored IEEE-754 value,
+  which may differ from the original literal.
+
 parseInt and parseFloat:  They “read” a number from a string until they can’t. In case of an error, the gathered number is returned. 
 alert( parseInt('12.3') ); // 12, only the integer part is returned
 alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
@@ -65,6 +82,7 @@ alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
 There are situations when parseInt/parseFloat will return NaN. It happens when no digits could be read:
 
 alert( parseInt('a123') ); // NaN, the first symbol stops the process
+* the second parameter of parseInt is the radix (base)
 
 Other Math functions:
 Math.random(), Math.max(a, b, c...) and Math.min(a, b, c...), Math.pow(n, power)
@@ -118,16 +136,16 @@ Infinity (and -Infinity) => is a special numeric value that is greater (less) th
 
 // alert( parseInt('a123') ); // NaN, the first symbol stops the process
 
-// let x = 9999999999999998;
-// let y = 9999999999999999;
-// let z = 10000000000000000; 
+let x = 9999999999999998;
+let y = 9999999999999999;
+let z = 10000000000000000; 
 
-// console.log(x === y); // true
-// console.log(y === z); // true
+console.log(x === y); // false
+console.log(y === z); // true
 
-// console.log(x);
-// console.log(y);
-// console.log(z);
+console.log(x); // 9999999999999998
+console.log(y); // 10000000000000000
+console.log(z); // 10000000000000000
 
 // function random(min, max) {
 //     const num = Math.random() * (max-min) + min;
@@ -177,7 +195,7 @@ Infinity (and -Infinity) => is a special numeric value that is greater (less) th
 
 //     while(true) {
 //         const num = prompt("Enter a valid number: ");
-//         if(num === null || num === "") {  // cancel or empty
+//         if(num === null || num.trim() === "") {  // cancel or empty
 //             return null;
 //         }
     
@@ -191,3 +209,39 @@ Infinity (and -Infinity) => is a special numeric value that is greater (less) th
 
 // const num = readNumber();
 // console.log(num);
+
+console.log((12.345).toFixed(2)); // 12.35
+console.log(0.10000000000000000555); // 0.1
+console.log(0.10000001); // 0.10000001
+
+console.log(NaN**0); // 1
+console.log(Infinity/2);
+
+console.log(0.1+0.2); // 0.30000000000000004
+console.log(0.1+0.3); // 0.4
+
+console.log(Number("0.4"));
+
+let a = Number.MAX_SAFE_INTEGER;
+console.log(a+1);
+console.log(a+2);
+
+/* parseInt questions */
+
+console.log(+"100px"); // NaN
+console.log(parseInt("100px", 2)); // 4
+console.log(parseInt("12", 2)); // 1 (1 x 2^0)
+console.log(parseInt("234", 2)); // NaN
+
+["1","2","3"].map(parseInt) // [1, NaN, NaN]
+
+/* practice */
+ 
+function readNumber() {
+    const num = prompt("Enter a number: ");
+    if(num === null || num.trim()==="") return null;
+    else if(isFinite(num)) return +num;
+    else return readNumber();
+}
+
+console.log(readNumber());
