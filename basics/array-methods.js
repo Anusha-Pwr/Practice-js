@@ -333,6 +333,26 @@ console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
 /* question 12 */
 
+function unique(arr) {
+    const res = strings.reduce((obj, item) => {
+        obj[item] = 1;
+        return obj;
+    }, {});
+
+    let newArr = [];
+    for(key in res) {
+        newArr.push(key);
+    }
+
+    return newArr;
+}
+  
+  let strings = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+  ];
+  
+  console.log( unique(strings) ); // Hare, Krishna, :-O
+
 /* question 13 */
 
 let users = [
@@ -362,3 +382,5 @@ let users = [
     pete: {id: 'pete', name: "Pete Peterson", age: 31},
   }
   */
+
+  console.log(Number("+2"));

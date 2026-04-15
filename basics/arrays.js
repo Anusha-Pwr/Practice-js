@@ -10,11 +10,19 @@ But if the value is an object or array, its internal contents can still change.
 => push(), unshift() -> return new length
 => pop(), shift() -> return removed element
 
+** arr.at(pos) => accessing elements of an array (pos can be -ve)
+
 ** length property of arrays is writable.
   -> decreasing length → removes elements
-     increasing length → creates empty slots
+     increasing length → creates empty slots (undefined)
+** string length is read-only, array length is writable
+** simplest way to clear an array: arr.length = 0
   
 ** JS arrays can have holes.
+** Array holes are neither undefined nor null => they are missing elements, the index simply doesn't exist!
+** Key difference: check if the index exists => 1 in arr => false
+** Reading a missing property returns undefined
+** console.log([,,].length); // 2
 ** Different methods treat holes differently.
   -> Method	             Hole behavior
     forEach	               skips
@@ -49,19 +57,57 @@ styles.unshift("Rap", "Reggae");
 console.log(styles);
 
 /* question */
-const num = [];
-while(true) {
+// const num = [];
+// while(true) {
    
-    let input = prompt("Enter a number: ");
+//     let input = prompt("Enter a number: ");
 
-    if(input==="" || input === null || !isFinite(input)) break;
+//     if(input==="" || input === null || !isFinite(input)) break;
 
-    num.push(+input);
+//     num.push(+input);
 
+// }
+
+// let sum = 0;
+// for(let number of num) {
+//     sum += number;
+// }
+// console.log(sum);
+
+console.log(Number(undefined)); // NaN
+console.log(typeof undefined); // undefined
+console.log(typeof null); // object
+console.log(Number.isFinite(undefined)); // false
+
+// function sumInput() {
+
+//   let arr = [];
+//   while(true) {
+//     const num = prompt("Enter a number: ");
+//     if(num===null || num.trim() === "" || !isFinite(num)) break;
+//     arr.push(+num);
+//   }
+
+//   let sum = 0;
+//   for(let x of arr) {
+//     sum += x;
+//   }
+
+//   return sum;
+  
+// }
+
+// console.log(sumInput());
+
+new Array(3).forEach(() => console.log("hi"));
+console.log("heyaa");
+
+const res = new Array(4).map((item) => 2);
+console.log(res);
+
+let myArr = new Array(3);
+for(let item of myArr) {
+  console.log(item); // undefined
 }
 
-let sum = 0;
-for(let number of num) {
-    sum += number;
-}
-console.log(sum);
+console.log(new Array(3).concat(2, 0));
