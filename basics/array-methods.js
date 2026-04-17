@@ -34,6 +34,26 @@ forEach: forEach() executes a callback for each element but always returns undef
 
 /*
 
+fill(): * fills all or part of an array with the given value
+        * arr.fill(value, start, end) : end not included
+        * mutates the original array
+        
+
+  /* the fill bug */
+
+// let arr = new Array(3).fill({});
+
+// arr[0].x = 1;
+
+// console.log(arr); // [{x:1},{x:1},{x:1}]
+
+/* trick question */
+// [0, 1, false, 2, "", 3].filter(Boolean) // [1, 2, 3] (filter keeps items that return true in the callback function)
+
+
+
+/*
+
 Searching in an array:
 
 -> indexOf() / lastIndexOf(), includes():
@@ -43,7 +63,7 @@ Searching in an array:
   alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
   alert( arr.includes(NaN) );// true (correct) 
 
--> find(): used to find an object with a specific consition, in an array of objects.
+-> find(): used to find an object with a specific condition, in an array of objects.
    let result = arr.find(function(item, index, array) {
   // if true is returned, item is returned and iteration is stopped
   // for falsy scenario returns undefined
@@ -72,6 +92,8 @@ Transform an array:
 
                    arr.join(glue)
                    both split and join donot mutate the original value
+
+* To check for an array: Array.isArray({}) // false
    
 */
 
@@ -104,21 +126,6 @@ every(): checks whether all elements satisfy a condition.
 /* question 1 */
 
 // function camelize(str) {
-//     let arr = str.split("");
-//     // const index = arr.findIndex((item) => item==="-");
-//     const indices = arr.filter((item, index) => {
-//         if(item==="-") return index;
-//     });
-//     console.log(indices);
-
-//     indices.map((index) =>  arr.splice(index, 1))
-//     // arr.splice(index, 1);
-//     console.log(arr);
-//     // arr[index] = arr[index].toUpperCase();
-//     // return arr.join("");
-// }
-
-// function camelize(str) {
 //     let arr = str.split("-");
 //     const newArr = arr.map((item, index) => index===0 ? item : item[0].toUpperCase() + item.slice(1));
 //     return newArr.join("");
@@ -131,20 +138,21 @@ every(): checks whether all elements satisfy a condition.
 // camelize("list-style-image") == 'listStyleImage';
 // camelize("-webkit-transition") == 'WebkitTransition';
     
-/* question 2 */
+/* question 2: multiple dashes */
 
 // function camelize(str) {
-//    const arr = str.split("-");
-//    const newArr = arr.filter((word) => word!=="");
-//    const newStr = newArr.map((word, index) => index===0 ? word : word[0].toUpperCase() + word.slice(1));
-//    return newStr.join("");
+//   let arr = str.split("-");
+//   const res = arr.map((word, index) => word==="" || index===0 ? word : word[0].toUpperCase() + word.slice(1));
+//   return res.join("");
 // }
 
-// console.log(camelize("border--left--width"));
 // console.log(camelize("background-color"));
 // console.log(camelize("list-style-image"));
 // console.log(camelize("-webkit-transition"));
-// console.log(camelize("---hello---world---"));
+// console.log(camelize("hello-world--"));
+// console.log(camelize("--hello-world--"));
+// console.log(camelize("-a--b---c-"));
+// console.log(camelize("----"));
 
 /* question 3 */
 
@@ -193,11 +201,13 @@ every(): checks whether all elements satisfy a condition.
 
 // let arr = [5, 2, 1, -10, 8];
 
-// arr.sort((a, b) => b-a);
+// // arr.sort((a, b) => b-a);
+// arr.sort(); // [-10, 1, 2, 5, 8] converts numbers to strings and sorts them lexicographically
 
 // // ... your code to sort it in decreasing order
 
-// console.log(arr); // 8, 5, 2, 1, -10
+// console.log( arr ); // 8, 5, 2, 1, -10
+
 
 /* question 6 */
 
@@ -295,7 +305,7 @@ reverse loop
 // console.log(arr[1].name); // Mary
 // console.log(arr[2].name); // Pete
 
-/* question 10 */
+/* question 11 */
 
 // let arr = [1, 2, 3];
 
@@ -313,65 +323,83 @@ reverse loop
 
 // shuffle(arr);
 // console.log(arr);
-// // arr = [3, 1, 2]
-
-/* question 11 */
-
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 29 };
-
-let arr = [ john, pete, mary ];
-
-function getAverageAge(arr) {
-    const res = arr.reduce((sum, item) => sum+=item.age, 0);
-    const avg = res/arr.length;
-    return avg;
-}
-
-console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+// arr = [3, 1, 2]
 
 /* question 12 */
 
-function unique(arr) {
-    const res = strings.reduce((obj, item) => {
-        obj[item] = 1;
-        return obj;
-    }, {});
+// let john = { name: "John", age: 25 };
+// let pete = { name: "Pete", age: 30 };
+// let mary = { name: "Mary", age: 29 };
 
-    let newArr = [];
-    for(key in res) {
-        newArr.push(key);
-    }
+// let arr = [ john, pete, mary ];
 
-    return newArr;
-}
-  
-  let strings = ["Hare", "Krishna", "Hare", "Krishna",
-    "Krishna", "Krishna", "Hare", "Hare", ":-O"
-  ];
-  
-  console.log( unique(strings) ); // Hare, Krishna, :-O
+// function getAverageAge(arr) {
+//     const res = arr.reduce((sum, item) => sum+=item.age, 0);
+//     const avg = res/arr.length;
+//     return avg;
+// }
+
+// console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
 /* question 13 */
 
-let users = [
-    {id: 'john', name: "John Smith", age: 20},
-    {id: 'ann', name: "Ann Smith", age: 24},
-    {id: 'pete', name: "Pete Peterson", age: 31},
-  ];
+// function unique(arr) {
+//     const res = strings.reduce((obj, item) => {
+//         obj[item] = 1;
+//         return obj;
+//     }, {});
 
-  function groupById(users) {
-    const res = users.reduce((obj, user) => {
-        obj[user.id] = user;
-        return obj;
-    },{});
-    console.log(res);
-    return res;
-  }
+//     let newArr = [];
+//     for(key in res) {
+//         newArr.push(key);
+//     }
+
+//     return newArr;
+// }
   
-  let usersById = groupById(users);
-  console.log(usersById);
+//   let strings = ["Hare", "Krishna", "Hare", "Krishna",
+//     "Krishna", "Krishna", "Hare", "Hare", ":-O"
+//   ];
+  
+//   console.log( unique(strings) ); // Hare, Krishna, :-O
+
+// function unique(arr) {   /* another solution */
+//   let result = [];
+
+//   for(let word of arr) {
+//     if(!result.includes(word)) {
+//       result.push(word);
+//     }
+//   }
+
+//   return result;
+// }
+
+// let strings = ["Hare", "Krishna", "Hare", "Krishna",
+//   "Krishna", "Krishna", "Hare", "Hare", ":-O"
+// ];
+
+// console.log( unique(strings) ); // Hare, Krishna, :-O
+
+/* question 14 */
+
+// let users = [
+//     {id: 'john', name: "John Smith", age: 20},
+//     {id: 'ann', name: "Ann Smith", age: 24},
+//     {id: 'pete', name: "Pete Peterson", age: 31},
+//   ];
+
+//   function groupById(users) {
+//     const res = users.reduce((obj, user) => {
+//         obj[user.id] = user;
+//         return obj;
+//     },{});
+//     console.log(res);
+//     return res;
+//   }
+  
+//   let usersById = groupById(users);
+//   console.log(usersById);
   
   /*
   // after the call we should have:
@@ -383,4 +411,122 @@ let users = [
   }
   */
 
-  console.log(Number("+2"));
+  console.log(Number("+2")); // 2
+
+/* practice */
+
+/* question */
+
+// function capitalizeWords(str) {
+//   const res = str.split(" ").map((word) => word==="" ? word : word[0].toUpperCase() + word.slice(1));
+//   return res.join(" ");
+// }
+
+/* normalize space */
+function capitalizeWords(str) {
+  if(str.trim().length===0) return "";
+  const res = str.trim().split(/\s+/);
+  const arr = res.map((word) => word[0].toUpperCase() + word.slice(1));
+  return arr.join(" ");
+}
+
+console.log(capitalizeWords("  hello   world  ")); //   Hello   World 
+// Hello World 
+
+// console.log(capitalizeWords("hello world")); 
+// // "Hello World"
+
+// console.log(capitalizeWords("javaScript is fun"));
+// // "JavaScript Is Fun"
+
+
+/* question */
+
+function reverseWords(str) {
+  const res = str.split(" ").reverse();
+  return res.join(" ");
+}
+
+console.log(reverseWords("hello world")); 
+// "world hello"
+
+console.log(reverseWords("I love JavaScript"));
+// "JavaScript love I"
+
+console.log(reverseWords("  hello   world  "));
+
+/* question */
+
+// function toKebabCase(str) {
+//   const res = str.split(" ").map((word) => word==="" ? word : word[0].toLowerCase() + word.slice(1));
+//   return res.join("-");
+// }
+
+/*normalize space */
+function toKebabCase(str) {
+ const res = str.trim().split(/\s+/).map((word) => word.toLowerCase());
+ return res.join("-");
+}
+
+console.log(toKebabCase("Hello World"));
+// "hello-world"
+
+console.log(toKebabCase("JavaScript Is Fun"));
+// "javascript-is-fun"
+
+console.log(toKebabCase("  Hello   World  "));
+
+/* question */
+
+// function camelToKebab(str) {
+//   const res = str.replace(/([A-Z][a-z])/g, (_, letter) => { return "-" + letter[0].toLowerCase() + letter[1] });
+//   const myStr = res.replace(/([a-z])([A-Z])/g, (_, firstGroup, secondGroup) => firstGroup + "-" + secondGroup.toLowerCase());
+//   console.log(myStr.toLowerCase());
+// }
+
+function camelToKebab(str) {
+  const res = str.replace(/([a-z])([A-Z])/g, "$1-$2");
+  const myStr = res.replace(/([A-Z])([A-Z][a-z])/g, "$1-$2");
+  return myStr.toLowerCase();
+}
+
+console.log(camelToKebab("backgroundColour")); // background-colour
+console.log(camelToKebab("getHTTPResponse")); // get-http-response
+console.log(camelToKebab("XMLHttpRequest")); // xml-http-request
+
+
+
+function camelToKebab(str) {
+  let result = "";
+
+  for(let i=0; i<str.length; i++) {
+    let char = str[i];
+    let prev = str[i-1];
+    let next = str[i+1];
+
+    if(char>='A' && char<='Z') {
+      if(i>0 && prev>='a' && prev<='z') {
+        result += '-';
+      } else if(i>0 && prev>='A' && prev<='Z' && next>='a' && next<='z') {
+        result += '-';
+      } 
+
+      result += char.toLowerCase();
+    } else {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+console.log(camelToKebab("backgroundColour"));
+console.log(camelToKebab("getHTTPResponse"));
+console.log(camelToKebab("XMLHttpRequest"));
+
+
+
+
+
+
+
