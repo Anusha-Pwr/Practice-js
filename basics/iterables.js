@@ -69,29 +69,29 @@ alert(arr); // 1,4,9,16,25
  for...of uses the string iterator, so it correctly iterates over full Unicode characters"
 */
 
-let str = "😂";
-for(let i=0; i<str.length; i++) {
-    console.log(str[i]);
-}
+// let str = "😂";
+// for(let i=0; i<str.length; i++) {
+//     console.log(str[i]);
+// }
 
 // for...of iterates over Unicode characters, not raw code units
 // for...of uses the string’s iterator, which is Unicode-aware, unlike indexing which works on UTF-16 code units.
 
-for(let char of str) {
-    console.log(char);
-}
+// for(let char of str) {
+//     console.log(char);
+// }
 
-let strr = "😂a"
-console.log(strr.at(0)); // broken character 
+// let strr = "😂a"
+// console.log(strr.at(0)); // broken character 
 
 /* an empty array is returned when normal object is passed to Array.from() */
-let range = {
-    from: 1,
-    to: 5
-  };
+// let range = {
+//     from: 1,
+//     to: 5
+//   };
 
-const arr = Array.from(range);
-console.log(arr); // []
+// const arr = Array.from(range);
+// console.log(arr); // []
 
 /* split does not handle surrogate pairs correctly, it works on indexing */
 let str1 = "x😂";
@@ -110,3 +110,102 @@ const subStr = myStr.slice(1, 3);
 console.log(subStr); // broken character string
 
 console.log(Array.from(myStr).slice(1, 3).join("")); // surrogate-aware slice
+
+                                                   /* questions */
+
+/* question 1 */
+
+console.log(Array.from("hello")); // ["h", "e", "l", "l", "o"]
+
+/* question 2 */
+
+// let obj = {
+//     0: "A",
+//     1: "B",
+//     length: 2
+//   };
+  
+// console.log([...obj]); // TypeError: obj is not iterable
+
+/* question 3 */
+
+// let obj = {
+//     0: "A",
+//     1: "B",
+//     length: 2
+//   };
+  
+// console.log(Array.from(obj)); // ["A", "B"]
+
+/* question 4 */
+
+let str = "😂";
+
+console.log(str.length); // 2
+console.log([...str].length); // 1 (spread operator uses iterator, teats it as 1 character, just like Array.from())
+
+/* question 5 */
+
+function test() {
+    console.log(Array.from(arguments)); // [1, 2, 3]
+  }
+  
+test(1, 2, 3);
+
+/* question 6 */
+
+// let obj = {
+//     length: 3
+//   };
+  
+// console.log(Array.from(obj)); // [undefined, undefined, undefined]
+
+/* question 7 */
+
+let range = {
+    from: 1,
+    to: 3,
+    length: 3
+};
+  
+console.log(Array.from(range)); // [undefined, undefined, undefined]
+
+/* question 8 */
+
+let set = new Set([1, 2, 3]);
+
+console.log(Array.from(set)); // [1, 2, 3]
+
+/* question 9 */
+
+// let obj = {
+//     0: "X",
+//     2: "Z",
+//     length: 3
+//   };
+  
+// console.log(Array.from(obj)); // [X, undefined , Z]
+
+/* question 10 */
+
+// let obj = {
+//     0: "A",
+//     1: "B",
+//     length: 2,
+  
+//     [Symbol.iterator]() {
+//       let i = 0;
+//       return {
+//         next: () => {
+//           if (i < this.length) {
+//             return { value: this[i++] + "!", done: false };
+//           }
+//           return { done: true };
+//         }
+//       };
+//     }
+//   };
+  
+/* obj is both iterable and array-like, but Array.from() prefers iterator! */
+//   console.log(Array.from(obj)); // ["A!", "B!"]
+
