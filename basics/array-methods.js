@@ -30,6 +30,33 @@ forEach: forEach() executes a callback for each element but always returns undef
 
   => return also does not stop the loop.
   => it only exits the callback function, the loop still continues.
+
+  for...of: 
+
+  ## Both forEach and for...of are for reading the values, not modifying!
+  ## you can't change the array if you don't know where the value came from (index).
+  ## But if we have objects inside array, then for...of modifies the array. (objects are stored by reference)
+
+let arr = [1, 2, 4];
+
+for(let item of arr) {
+    item = item*2;
+}
+
+console.log(arr); // [1, 2, 4]
+
+// for(let i=0; i<arr.length; i++) {
+//     arr[i] = arr[i]*2;
+// }
+
+// console.log(arr); // [2, 4, 8]
+
+// arr.forEach((item, index, arr) => item*2);
+// console.log(arr); // [2, 4, 8]
+
+for (let [i, val] of arr.entries()) { // we have to use index in for..of loop to modify the array
+  console.log(i, val);
+}
 */
 
 /*
@@ -523,6 +550,8 @@ function camelToKebab(str) {
 console.log(camelToKebab("backgroundColour"));
 console.log(camelToKebab("getHTTPResponse"));
 console.log(camelToKebab("XMLHttpRequest"));
+
+
 
 
 
