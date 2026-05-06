@@ -38,3 +38,40 @@ let lemon = 2;
 let orange = 3;
 console.log([orange, lemon]); // [3, 2]
 
+/* To swap variables */
+let guest = "Jane";
+let admin = "Pete";
+
+[admin, guest]= [guest, admin];
+
+console.log(admin); // Jane
+console.log(guest); // Pete
+
+/* swapping more than 2 variables */
+// let a = 1, b = 2, c = 3;
+
+// [a, b, c] = [c, a, b];
+
+// console.log(a, b, c); // 3 1 2
+
+/* rest parameter gets the rest using three dots ... */
+// let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// // rest is an array of items, starting from the 3rd one
+// alert(rest[0]); // Consul
+// alert(rest[1]); // of the Roman Republic
+// alert(rest.length); // 2
+
+/* no error, absent values are undefined */
+// let [firstName, surname] = [];
+
+// alert(firstName); // undefined
+// alert(surname); // undefined
+
+/* default values can be provided using = */
+// default values
+// let [name = "Guest", surname = "Anonymous"] = ["Julius"];
+/* Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided. */
+// runs only prompt for surname
+// let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
+
