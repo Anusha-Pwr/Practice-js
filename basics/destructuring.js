@@ -75,3 +75,61 @@ console.log(guest); // Pete
 // runs only prompt for surname
 // let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
+/* 
+
+Object destructuring: let {var1, var2} = {var1:…, var2:…}
+
+* If we want to assign a property to a variable with another name, for instance, make options.width go into the variable named w,
+  then we can set the variable name using a colon:
+
+  // { sourceProperty: targetVariable }
+  let {width: w, height: h, title} = options;
+
+* rest can be used just like with arrays. here, the rest will be the object with the rest of the properties.
+
+*/
+
+/*
+
+Smart function paramteres: We can pass parameters as an object, and the function immediately destructurizes them into variables:
+
+The full syntax is:
+
+function({
+  incomingProperty: varName = defaultValue
+  ...
+})
+
+*/
+
+// we pass object to function
+// let options = {
+//     title: "My menu",
+//     items: ["Item1", "Item2"]
+//   };
+  
+//   // ...and it immediately expands it to variables
+//   function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+//     // title, items – taken from options,
+//     // width, height – defaults used
+//     alert( `${title} ${width} ${height}` ); // My Menu 200 100
+//     alert( items ); // Item1, Item2
+//   }
+  
+//   showMenu(options);
+  
+/*
+
+When using destructuring in function parameters, we set the whole parameter to {} by default to avoid errors when no argument is passed.
+
+function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
+  console.log(title, width, height);
+}
+
+const { title = "Menu", width = 100, height = 200 } = {}; // destructuring happens like this now
+// if no argument, use an empty object by default
+
+showMenu();
+
+*/
+
