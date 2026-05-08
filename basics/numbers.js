@@ -82,7 +82,7 @@ alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
 There are situations when parseInt/parseFloat will return NaN. It happens when no digits could be read:
 
 alert( parseInt('a123') ); // NaN, the first symbol stops the process
-* the second parameter of parseInt is the radix (base)
+** the second parameter of parseInt is the radix (base)
 
 Other Math functions:
 Math.random(), Math.max(a, b, c...) and Math.min(a, b, c...), Math.pow(n, power)
@@ -90,10 +90,19 @@ Math.random(), Math.max(a, b, c...) and Math.min(a, b, c...), Math.pow(n, power)
 
 NaN => special numeric value in JavaScript that represents the result of an invalid or undefined numeric operation.
     => Any operation involving NaN → NaN
+    => does not equal anything, even itself
 
 Infinity (and -Infinity) => is a special numeric value that is greater (less) than anything.
 
+isNaN(value): converts the value to a number and then check if it is NaN 
+isFinite(value): converts value to number and checks if it is a regular number (not Infinity, -Infinity, NaN)
 
+Stricter versions: Number.isNaN, Number.isFinite
+
+Object.is: compares values like ===
+           useful in 2 edge cases: for comparing a value to NaN
+                                   for comparing 0 and -0
+           Object.is(NaN, NaN) // true
 
 /*
 
@@ -104,7 +113,7 @@ Infinity (and -Infinity) => is a special numeric value that is greater (less) th
 // let sum = num1 + num2;
 // alert("Sum: " + sum);
 
-// alert( 1.35.toFixed(1) ); 
+// alert( 1.35.toFixed(1) );
 // alert( 6.35.toFixed(1) );
 
 // function random(min, max) {
@@ -138,7 +147,7 @@ Infinity (and -Infinity) => is a special numeric value that is greater (less) th
 
 let x = 9999999999999998;
 let y = 9999999999999999;
-let z = 10000000000000000; 
+let z = 10000000000000000;
 
 console.log(x === y); // false
 console.log(y === z); // true
@@ -159,7 +168,6 @@ console.log(z); // 10000000000000000
 
 // // console.log(random(1, 5));
 // console.log(randomInteger(1, 5));
-
 
 // let a = 25;
 // console.log(a.toString());
@@ -191,6 +199,7 @@ console.log(z); // 10000000000000000
 // console.log(num);
 
 /* question */
+/* promot returns either a string or null(if cancel is clicked) */
 // function readNumber() {
 
 //     while(true) {
@@ -198,13 +207,13 @@ console.log(z); // 10000000000000000
 //         if(num === null || num.trim() === "") {  // cancel or empty
 //             return null;
 //         }
-    
+
 //         const input = Number(num);
 //         if(Number.isFinite(input)) {
 //             return input;
 //         }
 //     }
-   
+
 // }
 
 // const num = readNumber();
@@ -214,17 +223,17 @@ console.log((12.345).toFixed(2)); // 12.35
 console.log(0.10000000000000000555); // 0.1
 console.log(0.10000001); // 0.10000001
 
-console.log(NaN**0); // 1
-console.log(Infinity/2);
+console.log(NaN ** 0); // 1
+console.log(Infinity / 2);
 
-console.log(0.1+0.2); // 0.30000000000000004
-console.log(0.1+0.3); // 0.4
+console.log(0.1 + 0.2); // 0.30000000000000004
+console.log(0.1 + 0.3); // 0.4
 
 console.log(Number("0.4"));
 
 let a = Number.MAX_SAFE_INTEGER;
-console.log(a+1);
-console.log(a+2);
+console.log(a + 1);
+console.log(a + 2);
 
 /* parseInt questions */
 
@@ -233,15 +242,8 @@ console.log(parseInt("100px", 2)); // 4
 console.log(parseInt("12", 2)); // 1 (1 x 2^0)
 console.log(parseInt("234", 2)); // NaN
 
-["1","2","3"].map(parseInt) // [1, NaN, NaN]
+["1", "2", "3"].map(parseInt); // [1, NaN, NaN]
 
-/* practice */
- 
-function readNumber() {
-    const num = prompt("Enter a number: ");
-    if(num === null || num.trim()==="") return null;
-    else if(isFinite(num)) return +num;
-    else return readNumber();
-}
+let num = 0.1;
+console.log(num.toPrecision(20));
 
-console.log(readNumber());
