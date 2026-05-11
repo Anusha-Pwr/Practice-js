@@ -133,3 +133,67 @@ showMenu();
 
 */
 
+/* question 1 */
+
+let user = {
+  name: "John",
+  years: 30
+};
+
+let {name, years: age, isAdmin=false} = user;
+
+console.log(name);
+console.log(age);
+console.log(isAdmin);
+
+/* question 2 */
+
+function topSalary(salaries={}) {
+  if(Object.keys(salaries).length===0) return null; // if the object is empty
+
+  let top = Number.MIN_SAFE_INTEGER, person;
+  for (let [name, salary] of Object.entries(salaries)) {
+      if(salary>top) {
+          top = salary;
+          person = name;
+      }
+  }
+
+  return person;
+}
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+console.log(topSalary(salaries)); // Pete
+console.log(topSalary()); // null
+
+/* practice */
+
+// const myName = { firstName: "Tobi", lastName: "Sofela" };
+// const bio = { ...myName, firstName: "Oluwatobi", website: "codesweetly.com" };
+
+// console.log(bio);
+
+// const myName = { firstName: "Tobi", lastName: "Sofela" };
+// const bio = { firstName: "Oluwatobi", website: "codesweetly.com", ...myName };
+
+// console.log(bio);
+
+                                       /* Spread Operator */
+
+/* Spread operator helps expand iterables into individual elements */
+
+// const myName = ["Sofela", "is", "my"];
+// console.log(...myName); // Sofela is my
+// const aboutMe = ["Oluwatobi", ...myName, "name."];
+
+// console.log(aboutMe); // ['Oluwatobi', 'Sofela', 'is', 'my', 'name.']
+
+// const aboutMe = ["Oluwatobi", myName, "name."]
+// console.log(aboutMe); // ['Oluwatobi', Array(3), 'name.']
+
+
