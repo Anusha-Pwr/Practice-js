@@ -196,4 +196,30 @@ console.log(topSalary()); // null
 // const aboutMe = ["Oluwatobi", myName, "name."]
 // console.log(aboutMe); // ['Oluwatobi', Array(3), 'name.']
 
+/* how spread works in an object */
+
+const myNames = ["Oluwatobi", "Sofela"];
+const bio = { ...myNames, runs: "codesweetly.com" };
+
+console.log(bio); // copies myNames' properties into bio object
+
+// The invocation above will return:
+// { 0: "Oluwatobi", 1: "Sofela", runs: "codesweetly.com" }
+
+const myName = "Oluwatobi Sofela";
+
+function spellName(a, b, c) {
+return a + b + c;
+}
+
+console.log(spellName(...myName));      // returns: "Olu"
+
+console.log(spellName(...myName[3]));   // returns: "wundefinedundefined"
+
+console.log(spellName([...myName]));    // returns: "O,l,u,w,a,t,o,b,i, ,S,o,f,e,l,aundefinedundefined"
+
+console.log(spellName({...myName}));    // returns: "[object Object]undefinedundefined"
+
+/* spread operator only works on iterables! (not array-likes like Array.from()) */
+
 
