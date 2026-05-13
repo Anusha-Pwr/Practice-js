@@ -222,4 +222,12 @@ console.log(spellName({...myName}));    // returns: "[object Object]undefinedund
 
 /* spread operator only works on iterables! (not array-likes like Array.from()) */
 
+/* Differences between arguments object and rest parameter */
+/*
+* arguments oject is an array-like Object, not a real array!
+* rest parameter is a real array with all array functions available to use.
+* cannot use arguments object in an arrow function.
+* can use rest parameter in both arrow functions and normal functions.
+*/
+
 
