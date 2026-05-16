@@ -21,3 +21,35 @@ console.log(d.getTime()); // 1778043539995
 // const date = new Date(0);
 // console.log(date); // Thu Jan 01 1970 05:30:00 GMT+0530 (India Standard Time)
 
+/*
+
+"string date" → UTC-based
+(year, month, day) → local-based
+
+UTC = global standard time (Coordinated Universal Time)
+Local time = UTC ± offset
+JS often:
+stores in UTC
+shows in local time
+
+* Creating dates from "YYYY-MM-DD" strings can cause timezone shifts because JavaScript treats them as UTC
+
+*/
+
+/* assumes string in UTC, then shifts to loal time when displaying */
+let datee = new Date("2017-01-26"); // 26 Jan, 2017 in UTC
+console.log(datee); // Thu Jan 26 2017 05:30:00 GMT+0530 (India Standard Time)
+
+/* no shifting, directly displays in local time */
+let myD = new Date(2017, 0, 26);
+console.log(myD); // Thu Jan 26 2017 00:00:00 GMT+0530 (India Standard Time)
+
+/* 
+
+Accessing date components: 
+-> date.getFullYear(), date.getMonth() = 0 to 11, date.getDate(), etc
+-> return the components relative to the local time zone
+-> getTimezoneOffset() = Returns the difference between UTC and the local time zone, in minutes:
+   // if you are in timezone UTC-1, outputs 60
+   // if you are in timezone UTC+3, outputs -180
+      alert( new Date().getTimezoneOffset() );
