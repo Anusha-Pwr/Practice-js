@@ -53,3 +53,46 @@ Accessing date components:
    // if you are in timezone UTC-1, outputs 60
    // if you are in timezone UTC+3, outputs -180
       alert( new Date().getTimezoneOffset() );
+
+Setting date components:
+date.setFullYear(year, month, date), date.setMonth(month, date), setDate(date), etc
+
+Autocorrection: we can set out-of-range values, and date object will auto-adjust itself!
+                
+let date = new Date(2016, 1, 28);
+date.setDate(date.getDate() + 2);
+
+alert( date ); // 1 Mar 2016
+
+** That feature is often used to get the date after the given period of time. 
+
+*/
+
+const dd = new Date(2026, 4, 0);
+console.log(dd); // Thu Apr 30 2026 00:00:00 GMT+0530 (India Standard Time)
+
+// let myDate = new Date();
+// console.log(myDate.getFullYear());
+// console.log(myDate.getHours());
+// console.log(myDate.getUTCHours());
+// console.log(myDate.getTime());
+// console.log(myDate.getTimezoneOffset()); // difference between UTC and local time zone in minutes
+
+/*
+
+Date.now(): -> it returns the current timestamp
+            -> equivalent to: new Date().getTime()
+
+let start = Date.now(); // milliseconds count from 1 Jan 1970
+
+// do the job
+for (let i = 0; i < 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = Date.now(); // done
+
+alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
+
+
+*/
