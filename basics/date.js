@@ -96,3 +96,41 @@ alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
 
 
 */
+
+/*
+
+Date.parse(dateString): converts a date string into timestamp (milliseconds)
+const ts = Date.parse("2017-01-26"); // treated as in UTC time
+console.log(ts); // 1485388800000
+
+Equivalent to: new Date(dateString).getTime()
+
+* for invalid input returns NaN
+
+new Date(string) → returns a Date object
+Date.parse(string) → returns a timestamp (number)
+
+*/
+
+/* question 1 */
+
+// let date = new Date(2012, 1, 20, 3, 12);
+// console.log(date);
+
+/* question 2 */
+
+// function getWeekDay(date) {
+//  let day = date.getDay();
+//  switch(day) {
+//     case 0: return "SU";
+//     case 1: return "MO";
+//     case 2: return "TU";
+//     case 3: return "WE";
+//     case 4: return "TH";
+//     case 5: return "FR";
+//     case 6: return "SA";
+//  }
+// }
+
+// let date = new Date(2012, 0, 3);  // 3 Jan 2012
+// console.log( getWeekDay(date) );        // should output "TU"
