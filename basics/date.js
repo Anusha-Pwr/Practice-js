@@ -134,3 +134,40 @@ Date.parse(string) → returns a timestamp (number)
 
 // let date = new Date(2012, 0, 3);  // 3 Jan 2012
 // console.log( getWeekDay(date) );        // should output "TU"
+
+/* question 3 */
+
+// function getLocalDay(date) {
+//     let day = date.getDay();
+    
+//     if(day===0) day = 7;
+
+//     return day;  
+// }
+
+// let date = new Date(2012, 0, 3);  // 3 Jan 2012
+// console.log( getLocalDay(date) );       // tuesday, should show 2
+
+/* question 4 */
+
+// let date = new Date(2015, 0, 2);
+
+/* another solution */
+// function getDateAgo(date, day) {
+//     let newDate = date.getDate() - day;
+//     let resDate = new Date(date.getFullYear(), date.getMonth(), newDate);
+//     return resDate;
+
+// }
+
+/* 
+    const d = new Date(date) // takes date object, converts to timestamp, returns the date from that timestamp
+                             // creates a new date object from the same timestamp as original
+    Equivalent to: new Date(date.getTime())
+    
+    Date constructor can accept:
+    number → timestamp
+    string → parsed date
+    Date object → copied date
+
+*/
