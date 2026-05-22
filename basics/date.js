@@ -171,3 +171,42 @@ Date.parse(string) → returns a timestamp (number)
     Date object → copied date
 
 */
+
+// function getDateAgo(date, day) {
+//     let copyDate = new Date(date); // make a copy/clone of the given date object, then manipulate
+//     copyDate.setDate(date.getDate() - day);
+//     return copyDate;
+
+// }
+
+// console.log( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+// console.log( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+// console.log( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+
+/* question 5 */
+
+// function getLastDayOfMonth(year, month) {
+   
+//     let newDate = new Date(year, month+1);
+//     console.log(newDate);
+//     newDate.setDate(newDate.getDate()-1);
+//     let lastDay = newDate.getDate();
+
+//     return lastDay;
+// }
+
+// console.log(getLastDayOfMonth(2016, 5));
+
+/* question 6 */
+
+// function getSecondsToday() {
+//     let now = new Date();
+//     let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+//     let diff = now-today;
+//     let res = Math.floor(diff/1000);
+
+//     return res;
+   
+// }
+
+// console.log(getSecondsToday());
