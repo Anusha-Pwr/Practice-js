@@ -210,3 +210,58 @@ Date.parse(string) → returns a timestamp (number)
 // }
 
 // console.log(getSecondsToday());
+
+/* question 7 */
+
+// function getSecondsToTomorrow() {
+//     let now = new Date();
+//     console.log(now);
+//     let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+  
+//    console.log(tomorrow)
+
+//     let diff = tomorrow-now;
+//     let res = Math.floor(diff/1000);
+//     return res;
+// }
+
+// console.log(getSecondsToTomorrow());
+
+/* question 8 */
+
+// function padding(num) {
+//     if(num<10) return "0" + num;
+//     return num;
+// }
+
+// function formatDate(date) {
+//     let now = new Date();
+//     let past = date;
+//     let diff = now-past;
+//     let resDiff = Math.floor(diff/1000);
+//     if(resDiff < 1) {
+//         return "right now";
+//     } else if(resDiff < 60) {
+//         return `${resDiff} sec. ago`
+//     } else if(resDiff < 3600) {
+//         return `${Math.floor(resDiff/60)} min. ago`
+//     } else {
+//         let year = String(date.getFullYear()).slice(2);
+
+//         let month = padding(date.getMonth()+1);
+//         let numDate = padding(date.getDate());
+//         let hours = padding(date.getHours());
+//         let mins = padding(date.getMinutes());
+
+//         return `${numDate}.${month}.${year} ${hours}:${mins}`;
+//     }
+// }
+
+// console.log( formatDate(new Date(new Date - 1)) ); // "right now"
+
+// console.log( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+
+// console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+
+// // yesterday's date like 31.12.16 20:00
+// console.log( formatDate(new Date(new Date - 86400 * 1000)) );
