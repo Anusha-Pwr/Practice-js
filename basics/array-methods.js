@@ -10,6 +10,13 @@ slice: arr.slice([start], [end])
 
 concat: creates a new array that includes values from other arrays and additional items.
 
+** Array elements can be deleted using the delete keyword, just like we do in objects.
+   But, deleting an element like that creates a hole/empty slot there.
+
+   arr = ["a", "b", "c"];
+   delete arr[1];
+   console.log(arr); // ["a", empty, "c"]
+
 Iteration:
 
 forEach: forEach() executes a callback for each element but always returns undefined.
