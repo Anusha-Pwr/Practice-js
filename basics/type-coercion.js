@@ -28,6 +28,21 @@ arr.toString(); // "1,2,3"
 
 */
 
+/* 
+
+Object → primitive conversion order:
+Symbol.toPrimitive → valueOf → toString
+
+Hints:
+
+String() → string
+Number() → number
++ → default
+== → default
+
+** In the Symbol.toPrimitive method, if the required hint is not present, then undefined will be returned
+
+*/
 
 /*
 
