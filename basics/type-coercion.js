@@ -1,5 +1,5 @@
 /*
-Three types pf coercion: => to string
+Three types of coercion: => to string
                          => to boolean
                          => to number
 
@@ -69,19 +69,26 @@ Object.prototype.toString.call([]);
 // "[object Array]"
 
 ** Arrays override toString() to return a comma-separated list of elements, unlike plain objects which use Object.prototype.toString
+*/
 
 
+/*
+
+Numeric conversion: Number(null) = 0
+                    Number(undefined) = NaN
 
 */
 
 console.log(NaN === NaN); // false
 console.log(undefined == null); // true
+console.log(undefined == undefined); // true
 
 // console.log([1] > null); // true (1 > 0)
 // console.log([] + null + 1); // "null1" (string concatenation)
 // console.log({} + {});
 
 console.log(!!2); // true
+console.log(Boolean(0)); // false
 console.log(Boolean("")); // false
 console.log(Boolean(" ")); // true
 console.log(4 + null); // 4
@@ -137,3 +144,20 @@ console.log(4 + null); // 4
   
   console.log(obj * 2); // 20
   
+  {}+[]+{}+[1] // at the start of a statement, {} may be considered as an empoty block, instead of an object!
+  console.log({}+[]+{}+[1]); // now {} is definitely an object!
+
+/* question */
+new Date(0) - 0          // 0
+new Date(0) + 0          // 'Thu Jan 01 1970 02:00:00(EET)0'
+
+/*
+
+* For date, numeric conversion gives its timestamp.
+  Number(new Date(0)) = 0
+
+  + asks for prmitive with hint = 'default'
+  for date objects, 'default' behaves like string
+  new Date(0) -> "Thu Jan 01 1970 ..."
+
+*/
