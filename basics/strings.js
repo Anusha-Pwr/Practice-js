@@ -4,12 +4,25 @@ String Comparison:
   => localeCompare() performs locale-aware comparison using language-specific sorting rules
   => It can also handle numeric comparison using { numeric: true }
   => .sort() by default → string Unicode sort
+  => for numeric strings, localeCompare also does lexicographical sorting if {numeric: true} is not defined!
+
+  * When { numeric: true } is used:
+
+👉 JS splits strings into chunks:
+
+    numeric parts
+    non-numeric parts
+
+    Then compares them intelligently.
 
   localeCompare: 
    => It compares strings based on locale-aware rules, not raw Unicode
    => By default, it uses the system/browser locale
    => It can be customized using locale and options
    => { numeric: true } allows numeric comparison inside strings
+   => returns a -ve number if str is smaller(less) than str2
+   => returns a +ve number if str is greater than str2
+   => returns 0 if str is equal to str2
 
 unicode comparison: (>, <, >=, <=)
   => white space has lower unicode value than characters
