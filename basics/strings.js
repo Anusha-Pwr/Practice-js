@@ -28,6 +28,12 @@ unicode comparison: (>, <, >=, <=)
   => white space has lower unicode value than characters
   => emojis have higher unicode value than normal characters
 
+arr.sort(): Default sort() converts the elements to strings, and sorts them lexicographically.
+            To sort numbers properly, we MUST pass a comparator function.
+            eg: [10, 2, 5].sort((a, b) => a - b)
+            * comparator function returns -ve value if a<b, +ve value if a>b, 0 if equal
+            * equal elements keep original order
+
 Loose equality(==) vs strict equality(===):
   => null and undefined are loosely equal to each other only
   => null === undefined  // false
@@ -44,7 +50,7 @@ console.log("20" > 3); // true
 console.log("apple" < "Apple"); // false
 
 console.log("a" > "Z"); // true
-console.log("a".localeCompare("Z")); // -1
+console.log("a".localeCompare("Z")); // -1 (in english language, a comes before z)
 
 console.log("ä".localeCompare("z", "de")); // -1
 
