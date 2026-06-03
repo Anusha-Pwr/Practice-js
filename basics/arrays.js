@@ -26,7 +26,7 @@ But if the value is an object or array, its internal contents can still change.
 ** Different methods treat holes differently.
   -> Method	             Hole behavior
     forEach	               skips
-     map	               skips
+     map	               skips callback for holes, but preserves holes in the returned array
     for...of	           returns undefined
     for loop	           returns undefined
 
@@ -99,11 +99,19 @@ console.log(Number.isFinite(undefined)); // false
 
 // console.log(sumInput());
 
-new Array(3).forEach(() => console.log("hi"));
-console.log("heyaa");
+/* array hole behaviour */
+new Array(3).forEach(() => console.log("hi")); // nothing gets logged
+console.log("heyaa"); // "heyaa"
 
+/* map preserves structure, not values
+
+It creates a new array of the same length
+But only fills indices that actually exist
+
+Since no indices exist → nothing is filled
+ */
 const res = new Array(4).map((item) => 2);
-console.log(res);
+console.log(res); // [empty × 4]
 
 let myArr = new Array(3);
 for(let item of myArr) {
