@@ -36,14 +36,14 @@ But if the value is an object or array, its internal contents can still change.
 
 */
 
-const arr = [2, 4, 5, 1];
-console.log(arr.length);
+// const arr = [2, 4, 5, 1];
+// console.log(arr.length);
 
-console.log(arr.push(0));
-console.log(arr);
+// console.log(arr.push(0));
+// console.log(arr);
 
-console.log(arr.pop());
-console.log(arr);
+// console.log(arr.pop());
+// console.log(arr);
 
 /* question */
 
@@ -118,4 +118,28 @@ for(let item of myArr) {
   console.log(item); // undefined
 }
 
-console.log(new Array(3).concat(2, 0));
+console.log(new Array(3).concat(2, 0)); // preserve holes [empty × 3, 2, 0]
+
+const arr = [1,,3];
+console.log(arr); // [1, empty, 3]
+arr.forEach((x) => console.log(x)); // skips ( logs 1 and 3)
+console.log(1 in arr); // false
+
+for(let x of arr) {
+  console.log(x); // undefined
+}
+
+for(let x=0; x<arr.length; x++) {
+  console.log(arr[x]); // undefined
+}
+
+const newArr = arr.map((x) => x*2); // skips
+console.log(newArr); // [2, empty, 6]
+
+const arr2 = [1, , 3, , ]; // [1, empty, 3, empty]
+console.log(arr2.length); // 4
+for(let x of arr2) {
+  console.log(x);
+}
+
+console.log(arr2);
