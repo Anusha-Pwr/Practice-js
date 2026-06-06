@@ -1,5 +1,6 @@
 /*
     * To delete a property: delete user.age;
+    * keys in objects are either strings or symbols
     * Multi-word properties must be quoted
     * dot access doesn't work for multi-word properties
     * square bracket notation works for any string.
@@ -45,13 +46,46 @@ Property existance test:
 for...in loop: used to iterate over an object.
 
 Order of an object:
-    * integer properties are sorted, others appear in creation order
+    * integer properties are sorted (numerically), others appear in creation order
     
       // Number(...) explicitly converts to a number
       // Math.trunc is a built-in function that removes the decimal part
       alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
       alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
       alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+Optional Chaining '?.' :
+
+    * Optional chaining stops the evaluation if the value before '?.' is undefined or null, and returns undefined.
+    * something exists if it's not null and not undefined.
+    
+    * Other variants: 
+    obj?.() => used to call a function that may not exist
+    obj.method?.[] => to access dynamic properties of an object that may not exist
+    obj?.prop => property access
+
+    let userAdmin = {
+     admin() {
+     alert("I am admin");
+    }
+   };
+
+  let userGuest = {};
+  userAdmin.admin?.(); // I am admin
+  userGuest.admin?.(); // nothing happens (no such method)
+
+   let key = "firstName";
+
+   let user1 = {
+   firstName: "John"
+  };
+
+  let user2 = null;
+
+  alert( user1?.[key] ); // John
+  alert( user2?.[key] ); // undefined
+
+  * We can use ?. with delete
+  ** We can use ?. for safe reading and deleting, but not writing
 */
 
 /* question 1 */
