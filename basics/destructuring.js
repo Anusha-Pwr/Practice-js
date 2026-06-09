@@ -211,6 +211,7 @@ const myName = "Oluwatobi Sofela";
 function spellName(a, b, c) {
 return a + b + c;
 }
+console.log(...myName); // O l u w a t o b i   S o f e l a
 
 console.log(spellName(...myName));      // returns: "Olu"
 
@@ -230,4 +231,22 @@ console.log(spellName({...myName}));    // returns: "[object Object]undefinedund
 * can use rest parameter in both arrow functions and normal functions.
 */
 
+/*
+
+** We cannot use 'use strict' directive inside any function containing rest parameter, default parameter or destructuring parameter.
+   SyntaxError: Illegal 'use strict' directive in function with non-simple parameter list
+
+*/
+
+
+/*
+
+There are two types of spread contexts: 
+1. Array/function spread: needs iterable values
+2. Object spread: needs object-like values with enumerable properties
+
+** we cannot use spread alone: ...arr (invalid syntax)
+
+*/
+*/
 
