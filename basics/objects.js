@@ -88,6 +88,36 @@ Optional Chaining '?.' :
   ** We can use ?. for safe reading and deleting, but not writing
 */
 
+// Syntaxes to declare a function as an object property:
+
+// 1. Function expression syntax
+/*
+let user = {
+  name: "xyz",
+  sayHi: function() {
+    console.log("hi");
+  }
+}
+*/
+// 2. Shorthand method syntax
+/*
+let user = {
+  name: "xyz",
+  sayHi() {
+    console.log("hi");
+  }
+}
+*/
+// 3. Arrow function as property
+/*
+let user = {
+  name: "xyz",
+  sayHi: () => {
+    console.log("hi");
+  }
+}
+*/
+
 /* question 1 */
 
 const user = {};
