@@ -248,5 +248,22 @@ There are two types of spread contexts:
 ** we cannot use spread alone: ...arr (invalid syntax)
 
 */
+
+/*
+
+** just like spread, we cannot use rest alone: ...rest (invalid)
+
+rest has 3 common uses: 
+
+function f(...args) {}
+// collects arguments into array
+
+const [a, ...rest] = arr;
+// collects remaining iterable values into array
+
+const { a, ...rest } = obj;
+// collects remaining object properties into object
+
+** in all cases, rest must come last
 */
 
