@@ -31,6 +31,28 @@ const newArr = entries.map((entry) => [entry[0], entry[1]*2]);
 const doublePrices = Object.fromEntries(newArr);
 console.log(doublePrices); // {banana: 2, orange: 4, meat: 8}
 
+/*
+
+** Object.fromEntries() takes an iterable of [key, value] pairs and creates an object from them.
+** It is commonly used as the reverse of Object.entries() and is useful for filtering or transforming object properties.
+
+Common pattern:
+
+const newObj = Object.fromEntries(Object.entries(obj).filter(([key, value]) => {
+    return [key, value];
+}));
+
+*/
+
+const obj = {
+    name: "John",
+    age: 24,
+    password: "secret"
+};
+
+const res = Object.fromEntries(Object.entries(obj).filter(([key, value]) => key!=='password'));
+console.log(res); // {name: 'John', age: 24}
+
 /* question 1 */
 
 let salaries = {
