@@ -15,3 +15,26 @@ Unary + -> does nothing to numbers.
         alert( +"" );   // 0
 
 */
+
+/*
+
+Operator precedence: -> operator with the larger precedence operates first
+                     -> if the precedence is the same, execution order is from left to right
+
+parentheses > unary +, - > exponentiation > binary division, multiplication > binary addition, subtraction > assignment
+
+parentheses > unary > exponentiation > multi, divi, modulus > add, sub > relational operators > equality > logical && > logical || > assignment
+
+* exponentiation happens right to left (when precedence is same)
+
+Assignment operator: returns the value assigned
+
+Modify and assign: +=, *=, etc
+                   same priority as assignment operator
+
+                   let n = 2;
+
+                  n *= 3 + 5; // right part evaluated first, same as n *= 8
+
+                  alert( n ); // 16
+*/
