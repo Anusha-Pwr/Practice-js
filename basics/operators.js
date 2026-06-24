@@ -38,3 +38,33 @@ Modify and assign: +=, *=, etc
 
                   alert( n ); // 16
 */
+
+/*
+Increment/Decrement operators: increase/decrease the value by 1
+                               -> prefix form: ++a // returns the new value
+                               -> postfix form: a++ // returns the old value
+
+Comma operator: -> result of only the last expression is returned
+                -> has very low precedence, even lower than =
+
+                let a = (1 + 2, 3 + 4);
+
+                alert( a ); // 7 (the result of 3 + 4)
+*/
+
+console.log(5++); // SyntaxError
+
+/* question 1 */
+// let a = 1, b = 1;
+
+// let c = ++a; // ?
+// let d = b++; // ?
+
+// a = 2, b = 2, c = 2, d = 1
+
+/* question 2 */
+let a = 2;
+
+let x = 1 + (a *= 2); // x = 5, a = 4
+
+/*
