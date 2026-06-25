@@ -68,3 +68,16 @@ let a = 2;
 let x = 1 + (a *= 2); // x = 5, a = 4
 
 /*
+
+* All comparison operators return a boolean value
+
+Comparison of different types: 
+** when comparing values of different types, JS converts the values to numbers
+
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+
+** A strict equality operator === checks the equality without type conversion.
+alert( 0 === false ); // false, because the types are different
+
+*/
