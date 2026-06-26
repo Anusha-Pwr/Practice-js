@@ -52,7 +52,7 @@ Comma operator: -> result of only the last expression is returned
                 alert( a ); // 7 (the result of 3 + 4)
 */
 
-console.log(5++); // SyntaxError
+// console.log(5++); // SyntaxError
 
 /* question 1 */
 // let a = 1, b = 1;
@@ -81,3 +81,19 @@ alert( '01' == 1 ); // true, string '01' becomes a number 1
 alert( 0 === false ); // false, because the types are different
 
 */
+
+5 > 4 
+"apple" > "pineapple"
+"2" > "12"
+undefined == null
+undefined === null
+null == "\n0\n"
+null === +"\n0\n"
+
+// true
+// false
+// true
+// true
+// false
+// false
+// false
