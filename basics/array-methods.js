@@ -50,7 +50,7 @@ for(let item of arr) {
     item = item*2;
 }
 
-console.log(arr); // [1, 2, 4]
+console.log(arr); // [1, 2, 4] (no change!)
 
 // for(let i=0; i<arr.length; i++) {
 //     arr[i] = arr[i]*2;
@@ -59,7 +59,7 @@ console.log(arr); // [1, 2, 4]
 // console.log(arr); // [2, 4, 8]
 
 // arr.forEach((item, index, arr) => item*2);
-// console.log(arr); // [2, 4, 8]
+// console.log(arr); // [2, 4, 8] (no change!)
 
 for (let [i, val] of arr.entries()) { // we have to use index in for..of loop to modify the array
   console.log(i, val);
@@ -74,7 +74,7 @@ fill(): * fills all or part of an array with the given value
         * supports negative indices
         * object reference bug
 
-  /* the fill bug */
+/* the fill bug */
 
 // let arr = new Array(3).fill({}); // all elements point to the same object!
 
@@ -108,9 +108,11 @@ Searching in an array:
   // for falsy scenario returns undefined
 });
 
-  findIndex():
+  findIndex(): // returns -1 if not found
+  findLastIndex():
 
   filter: returns an array of all matching elements
+          empty array if no matching element found
 
 
 Transform an array:
@@ -131,6 +133,8 @@ Transform an array:
 
                    arr.join(glue)
                    both split and join donot mutate the original value
+
+** only sort() and reverse() mutate the original array
 
 * To check for an array: Array.isArray({}) // false
    
@@ -160,6 +164,20 @@ every(): checks whether all elements satisfy a condition.
          returns true/false
 */
 
+/*
+
+// let arr = [];
+// // TypeError: Reduce of empty array with no initial value
+// // if the initial value existed, reduce would return it for the empty arr.
+// arr.reduce((sum, current) => sum + current);
+
+let mango = [];
+const result = mango.reduce((acc, item) => acc+item, 0);
+console.log(result); // 0
+// the callback never runs because the array is empty. So, the acc is returned.
+
+*/
+
                                          /* questions */ 
                                          
 /* question 1 */
@@ -179,19 +197,19 @@ every(): checks whether all elements satisfy a condition.
     
 /* question 2: multiple dashes */
 
-// function camelize(str) {
-//   let arr = str.split("-");
-//   const res = arr.map((word, index) => word==="" || index===0 ? word : word[0].toUpperCase() + word.slice(1));
-//   return res.join("");
-// }
+function camelize(str) {
+  let arr = str.split("-");
+  const res = arr.map((word, index) => word==="" || index===0 ? word : word[0].toUpperCase() + word.slice(1));
+  return res.join("");
+}
 
-// console.log(camelize("background-color"));
-// console.log(camelize("list-style-image"));
-// console.log(camelize("-webkit-transition"));
-// console.log(camelize("hello-world--"));
-// console.log(camelize("--hello-world--"));
-// console.log(camelize("-a--b---c-"));
-// console.log(camelize("----"));
+console.log(camelize("background-color"));
+console.log(camelize("list-style-image"));
+console.log(camelize("-webkit-transition"));
+console.log(camelize("hello-world--"));
+console.log(camelize("--hello-world--"));
+console.log(camelize("-a--b---c-"));
+console.log(camelize("----"));
 
 /* question 3 */
 
@@ -562,6 +580,7 @@ function camelToKebab(str) {
 console.log(camelToKebab("backgroundColour"));
 console.log(camelToKebab("getHTTPResponse"));
 console.log(camelToKebab("XMLHttpRequest"));
+
 
 
 

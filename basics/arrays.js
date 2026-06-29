@@ -115,7 +115,7 @@ console.log(res); // [empty × 4]
 
 let myArr = new Array(3);
 for(let item of myArr) {
-  console.log(item); // undefined
+  console.log(item); // undefined (accessing missing index)
 }
 
 console.log(new Array(3).concat(2, 0)); // preserve holes [empty × 3, 2, 0]
@@ -154,7 +154,3 @@ arrr.map(() => count++); // callback is called for indices 0 and 2
 console.log(count); // 2
 
 
-// let arr = [];
-// // TypeError: Reduce of empty array with no initial value
-// // if the initial value existed, reduce would return it for the empty arr.
-// arr.reduce((sum, current) => sum + current);
