@@ -16,6 +16,38 @@ Default parameters:
                 -> parameters have their own scope
 */
 
+// function checkAge(age) {
+//     if (age > 18) {
+//       return true;
+//     } else {
+//       return confirm('Did parents allow you?');
+//     }
+//   }
+
+//   function checkAge(age) {
+//    return age > 18 ? true : confirm('Did parents allow you?');
+//   }
+
+//   function checkAge(age) {
+
+//   }
+
+// function min(a, b) {
+//     if(a<b) return a;
+//     return b;
+// }
+
+// console.log(min(2, 5));
+
+// const x = +prompt("Enter x: ");
+// const n = +prompt("Enter n: ");
+
+// console.log(pow(x, n));
+
+// function pow(x, n) {
+//     return x**n;
+// }
+
 
 
 
