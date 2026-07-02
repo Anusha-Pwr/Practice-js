@@ -71,8 +71,16 @@ for (let [i, val] of arr.entries()) { // we have to use index in for..of loop to
 fill(): * fills all or part of an array with the given value
         * arr.fill(value, start, end) : end not included
         * mutates the original array
+        * returns the mutated array
         * supports negative indices
         * object reference bug
+
+/* fill with no argument fills with undefined */
+
+let arr = new Array(3).fill();
+
+console.log(arr);
+// [undefined, undefined, undefined]
 
 /* the fill bug */
 
@@ -85,11 +93,12 @@ fill(): * fills all or part of an array with the given value
 /* trick question */
 // [0, 1, false, 2, "", 3].filter(Boolean) // [1, 2, 3] (filter keeps items that return true in the callback function)
 
-let arr = Array(3).fill().map(() => []);
+/* fresh array per callback call */
+// let arr = Array(3).fill().map(() => []);
 
-arr[1].push("A");
+// arr[1].push("A");
 
-console.log(arr); // [[], ['A'], []]
+// console.log(arr); // [[], ['A'], []]
 
 /*
 
