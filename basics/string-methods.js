@@ -1,6 +1,9 @@
 /*
 
-indexOf:
+** Primitives cannot store properties. JavaScript temporarily wraps primitives in objects to allow method access,
+   but those temporary objects are immediately discarded.
+
+indexOf:  str.indexOf(substr, pos)
   => Returns first occurence or -1
   => is case-sensitive
   => treats negative index as 0
@@ -48,9 +51,20 @@ includes():
 
 */
 
-let str = "hello";
-console.log(str.indexOf("he", 5)); // -1
-console.log(str.indexOf("", 5)); // 5
+// 'use strict';
+let str = "Hello";
+
+str.test = 5; // JS creates a temporary wrapper object: let temp = new String("Hello"); temp.test = 5;
+              // this wrapper only exists for this operation, immediately after this, temp = null;
+              // in strict mode, writing into this property gives TypeError
+
+/* again a temporary warapper object is created but this object has no trace of the 'test' property  */
+alert(str.test); // undefined
+
+
+// let str = "hello";
+// console.log(str.indexOf("he", 5)); // -1
+// console.log(str.indexOf("", 5)); // 5
 
 console.log("123".indexOf(2)); // 1
 console.log("hello".indexOf(undefined)); // -1 ("undefined" is searched)
