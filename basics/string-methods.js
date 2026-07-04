@@ -49,6 +49,24 @@ includes():
  remove the last character: str.slice(0, -1)
  remove the first and last character: str.slice(1, -1)
 
+To access a character: 1. str[i]
+                       2. str.at(pos) -ve indices allowed
+                       3. str.charAt(pos) out of bounds gives "", -ve indices not allowed
+*/
+
+const str = "hello";
+
+str[1];         // "e"
+str.at(-1);     // "o"
+str[10];        // undefined
+str.at(10);     // undefined
+str.charAt(10); // ""
+
+/*
+replace(): 
+
+split(): Consecutive separators create empty strings between them.
+
 */
 
 // 'use strict';
