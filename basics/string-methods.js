@@ -125,3 +125,16 @@ console.log("fine".indexOf("in", 4)); // -1
 console.log("fine".indexOf("", 4)); // 4
 console.log(" a".indexOf("", 3)); // 2
 console.log(" ".indexOf("", 3)); // 1
+
+/* finding all occurences of a string */
+
+// let str = 'As sly as a fox, as strong as an ox';
+// let target = 'as'; // let's look for it
+
+// let pos = 0;
+// while(pos<str.length) {
+//  let index = str.indexOf(target, pos);
+//  if(index===-1) break;
+//  pos = index + 1; // if -1 is returned, pos becomes -1 + 1 = 0 and the search starts again
+//  console.log(index);
+// }
