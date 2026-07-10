@@ -97,3 +97,61 @@ console.log(first, third, rest); // 10 30 [40, 50]
 
   console.log(details); // {name: "John", city: "Delhi"}
 }
+
+/* question 11 */
+
+const user = {
+  name: "John",
+  age: 30
+};
+
+for (const [key, value] of Object.entries(user)) {
+  console.log(`${key}: ${value}`);
+}
+// name: John
+// age: 30
+
+/* question 12 */
+
+const arr = ["A", "B"];
+
+console.log([...arr]); // ["A", "B"]
+console.log({ ...arr }); // {0: "A", 1: "B"}
+
+/* question 13 */
+
+const obj = {
+  0: "A",
+  1: "B",
+  length: 2
+};
+
+// console.log([...obj]); // TypeError
+
+/* question 14 */
+
+console.log({ ...true }); // {}
+console.log({ ..."hi" }); // {0: "h", 1: "i"}
+
+/* question 15 */
+
+const original = [
+  { name: "John" }
+];
+
+const copy = [...original];
+
+copy[0].name = "Anu";
+
+console.log(original[0].name); // "Anu"
+
+/* question 16 */
+
+function show(first, ...rest) {
+  console.log(first); // 10
+  console.log(rest); // [20, 30]
+}
+
+const values = [10, 20, 30];
+
+show(...values);
