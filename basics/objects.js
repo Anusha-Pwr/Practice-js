@@ -5,6 +5,10 @@
     * dot access doesn't work for multi-word properties
     * square bracket notation works for any string.
     
+** Object keys are strings or symbols.
+   If you use number, boolean, object, etc. as a key, it gets converted to a string.
+   To use a variable's value as a key, use [variableName].
+    
 Square bracket notation: 
     * to obtain a property name as the result of any expression (dot notation cannot be used like that)
       let key = "likes birds";
