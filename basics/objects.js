@@ -53,15 +53,17 @@ Order of an object:
       alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
       alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
       alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+
 Optional Chaining '?.' :
 
     * Optional chaining stops the evaluation if the value before '?.' is undefined or null, and returns undefined.
     * something exists if it's not null and not undefined.
     
     * Other variants: 
-    obj?.() => used to call a function that may not exist
-    obj.method?.[] => to access dynamic properties of an object that may not exist
-    obj?.prop => property access
+    obj.method?.() => used to call a function that may not exist (protects method)
+    obj?.method() => protects obj
+    obj?.[prop] => safe dynamic property access
+    obj?.prop => safe property access
 
     let userAdmin = {
      admin() {
@@ -85,7 +87,8 @@ Optional Chaining '?.' :
   alert( user2?.[key] ); // undefined
 
   * We can use ?. with delete
-  ** We can use ?. for safe reading and deleting, but not writing
+  ** We can use ?. for safe reading and deleting, but not writing => syntax error
+
 */
 
 // Syntaxes to declare a function as an object property:
@@ -125,7 +128,7 @@ user.name = "John";
 user.surname = "Smith";
 user.name = "Pete";
 delete user.name;
-console.log(user);
+console.log(user); // {surname: 'Smith'}
 
 /* question 2 */
 
@@ -170,7 +173,7 @@ let menu = {
   };
 
   function multiplyNumeric(obj) {
-    for(key in obj) {
+    for(let key in obj) {
         if(typeof obj[key] === "number") {
             obj[key] *= 2;
         }
