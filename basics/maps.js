@@ -27,10 +27,11 @@ map.set('1', 'str1')
 let john = {name: "John"};
 let visitsCountMap = new Map();
 visitsCountMap.set(john, 123);
-console.log(visitsCountMap.get(john));
+console.log(visitsCountMap.get(john)); // 123
 
-console.log(String({}));
+console.log(String({})); // [object Object]
 
+/* object keys are compared by reference not by content */
 let myMap = new Map();
 myMap.set({}, 1);
 myMap.set({}, 2);
@@ -40,19 +41,22 @@ console.log(myMap.size); // 2
 /* 
 Iteration over map: 3 methods to loop over a map
 
-map.keys() => returns an iterable for keys
-map.values() => returns an iterable for values
-map.entries() => returns an iterable for entries [key, value], used by default in for...of
-
+map.keys() => returns an iterable iterator for keys
+map.values() => returns an iterable iterator for values
+map.entries() => returns an iterable iterator for entries [key, value] (array), used by default in for...of
 map has a built-in forEach method just like arrays:
 
 */
+/* Array methods cannot be used on these iterable iterators */
 
 let recipeMap = new Map([
     ['cucumber', 350],
     ['tomatoes', 150],
     ['onion', 100]
 ]);
+console.log(recipeMap.keys()); // MapIterator {'cucumber', 'tomatoes', 'onion'}
+
+// recipeMap.keys().push("potato"); // TypeError
 
 for(let key of recipeMap.keys()) {
     console.log(key);
@@ -72,24 +76,25 @@ recipeMap.forEach((value, key, recipeMap) => {
 
 /* 
 
-Map from object: Object.entries()
+Map from object: Object.entries(obj)
                  => returns the array of key/value pairs
+                 => array methods can be used on the result
 
 */
 
-// const obj = {
-//     name: "John",
-//     age: 30
-// };
+const obj = {
+    name: "John",
+    age: 30
+};
 
-// const res = Object.entries(obj);
-// console.log(res);
-// const map = new Map(res);
-// console.log(map);
+const res = Object.entries(obj);
+console.log(res);
+const map = new Map(res);
+console.log(map);
 
 /*
 
-Object from map: Object.fromEntries()
+Object from map: Object.fromEntries(iterableOfPairs)
                  => returns an object
                  => expects an iterable object as argument
 
@@ -113,15 +118,15 @@ console.log(myObj); // {banana: 1, orange: 2, meat: 4}
 
 /* question 1 */
 
-let map = new Map();
+// let map = new Map();
 
-map.set("name", "John");
+// map.set("name", "John");
 
-let keys = map.keys();
+// let keys = map.keys();
 
-const keysArr = Array.from(keys);
-keysArr.push("more");
-console.log(keysArr);
+// const keysArr = Array.from(keys);
+// keysArr.push("more");
+// console.log(keysArr);
 
 // Error: keys.push is not a function
 // keys.push("more");
