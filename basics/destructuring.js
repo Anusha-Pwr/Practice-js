@@ -2,18 +2,38 @@
 
 Destructuring is JS syntax that allows us to extract values from arrays or objects into variables in a shorter and cleaner way.
 
+There are 2 types of destructuring: 
+1. Array Destructuring: unpacks values from an iterable into variables using []
+2. Object Destructuring: unpacks properties from an object-like value into variables using {}
+
 */
 
-let [firstName, surname] = "John Smith".split(' ');
-console.log(firstName); // John
-console.log(surname);  // Smith
+// 1. Array Destructuring
 
+let [firstName, surname] = "John Smith".split(" ");
+console.log(firstName); // John
+console.log(surname); // Smith
+
+/* Array destructuring needs an iterable */
 /* it works with any iterable, not only arrays */
 /* syntax sugar for calling for...of over the value to the right of = and assigning the values */
-let [a, b, c] = "abc"; // ["a", "b", "c"]
-let [one, two, three] = new Set([1, 2, 3]);
-console.log(a); // "a"
-console.log(three); // 3
+/* it uses position for pulling values  */
+/* Defaults values only apply when extracted value is undefined or missing */
+/* Nested Destructuring in arrays
+
+-> Nested destructuring can throw if the nested value is missing.
+   const [[a, b]] = [];
+   // TyepError: cannot destructure undefined
+
+-> Use a nested default when needed.
+   const [[a, b]=[]] = [];
+
+*/
+
+// let [a, b, c] = "abc"; // ["a", "b", "c"]
+// let [one, two, three] = new Set([1, 2, 3]);
+// console.log(a); // "a"
+// console.log(three); // 3
 
 /* Looping with .entries() */
 
