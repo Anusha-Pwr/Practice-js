@@ -10,8 +10,19 @@ By default, valueOf() and toString() exist on all objects.
 => because all normal objects inherit from: Object.prototype
 
 and Object.prototype defines: toString()
-                              valueOf()
+                              valueOf() (returns the object itself for normal objects)
 So unless you override them, every object has them via the prototype chain.
+
+* Built-in wrapper objects override valueOf()
+
+Some objects provide a more useful version:
+
+new Number(5).valueOf();        // 5
+new String("hello").valueOf();  // "hello"
+new Boolean(false).valueOf();   // false
+new Date(0).valueOf();          // 0
+
+These return their underlying primitive values.
 
 Default Behaviour (Plain object):
 
