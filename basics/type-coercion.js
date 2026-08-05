@@ -46,10 +46,19 @@ Symbol.toPrimitive → valueOf → toString
 
 Hints:
 
-String() → string
-Number() → number
-+ → default
-== → default
+| Operation                                     | Hint        |
+| --------------------------------------------- | ----------- |
+| `Number(obj)`                                 | `"number"`  |
+| unary `+obj`                                  | `"number"`  |
+| `obj - value`                                 | `"number"`  |
+| `obj * value`                                 | `"number"`  |
+| `obj / value`                                 | `"number"`  |
+| relational comparison such as `obj < 10`      | `"number"`  |
+| `String(obj)`                                 | `"string"`  |
+| template interpolation such as `` `${obj}` `` | `"string"`  |
+| binary `obj + value`                          | `"default"` |
+| `obj == primitive`                            | `"default"` |
+
 
 ** In the Symbol.toPrimitive method, if the required hint is not present, then undefined will be returned
 
