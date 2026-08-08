@@ -62,6 +62,14 @@ Hints:
 
 ** In the Symbol.toPrimitive method, if the required hint is not present, then undefined will be returned
 
+If Symbol.toPrimitive exists:
+    Call it with "number", "string", or "default".
+    The method may use or ignore the hint.
+
+If Symbol.toPrimitive does not exist:
+    number/default hint → valueOf(), then toString()
+    string hint         → toString(), then valueOf()
+
 */
 
 /*
