@@ -1,15 +1,26 @@
 /*
   lexical environment = local memory + lexical environment of its parent
-  scope chain = chain of lexical environemnts and parent references
+  scope chain = chain of lexical environments and parent references
 
   temporal dead zone = time period between hoisting to initialization of a let/const 
   let/const are not attached to the global object. (window in case of browser)
+
+  -> Script is not an accessible object.
+  -> It is a DevTools label for the global lexical scope, where top level let, const, class bindings reside in a classic script.
+  -> You cannot write Script.b.
+
+  -> Block is also a devtool label for scope.
 
   Syntax error:
   => missing initializer in const declaration
   => identifier 'a' has already been declared
 
   Block, Script, Global
+
+  ** A function call creates a new execution context and lexical environment.
+     A block does not create an execution context;
+     it only creates a nested lexical environment for block-scoped declarations such as let, const, and class,
+     while execution continues in the same execution context.
 
   lexical scope chain works the same for functions and blocks:
   => The lexical scope chain works the same for functions and blocks in JavaScript because both create lexical environments
