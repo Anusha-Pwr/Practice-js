@@ -14,6 +14,12 @@
   Syntax error:
   => missing initializer in const declaration
   => identifier 'a' has already been declared
+  => Lexical declaration cannot appear in a single statement context
+
+  Reference error: cannot access 'a' before initialization
+
+  Type error:
+  => Assignment to constant variable
 
   Block, Script, Global
 
