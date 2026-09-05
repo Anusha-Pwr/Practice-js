@@ -66,6 +66,20 @@ switch (x) {
 }
 */
 
+/* Function params and Hoisting */
+
+/*
+
+Parameters are initialized before the function body executes.
+A same-named var does not reset a parameter to undefined.
+A var initializer changes the binding when that assignment executes.
+Default parameters are evaluated from left to right.
+Default expressions can access earlier parameters and outer scopes, but not variables declared inside the function body.
+
+*/
+
+if (true) var a = 1; // No error
+
 // {
 //     // TDZ starts at beginning of scope
 //     const func = () => console.log(letVar); // OK
