@@ -105,11 +105,26 @@ var a = 1;
 function a() {}
 
 /* question */
+/*
+
+For same-name conflicts inside a function:
+
+function declaration > parameter > var declaration
+
+during setup/hoisting.
+
+But:
+
+runtime assignment > everything
+
+*/
+{
 function test(y) {
-    console.log(y);
+    console.log(y); // f y() {}
     function y() {}
 }
 test(5);
+}
 
 // var a, b;
 // console.log(a, b);
